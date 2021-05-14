@@ -1,9 +1,9 @@
 ## SAPO CLIENT
 
-Support APIs of myharavan.com
+Support APIs of mysapo.net
 
 ### INSTALL
-npm install haravan-client
+npm install sapo-client
 
 ### SUPPORT LIST
 - Article
