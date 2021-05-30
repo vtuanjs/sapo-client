@@ -7,7 +7,7 @@ export function putSapoCustomCollection(param: {
   customCollection: any;
   delay?: number;
   id: string;
-}): Promise<any> {
+}): Promise<ISapoCustomCollection> {
   const { accessToken, apiKey, secretKey, customCollection, delay, id } = param;
   const config = makeRequestConfig({
     path: `/custom_collections/${id}.json`,
@@ -47,7 +47,7 @@ export function postSapoCustomCollection(param: {
   secretKey?: string;
   customCollection: any;
   delay?: number;
-}): Promise<any> {
+}): Promise<ISapoCustomCollection> {
   const { accessToken, apiKey, secretKey, customCollection, delay } = param;
   const config = makeRequestConfig({
     path: '/custom_collections.json',
@@ -68,7 +68,7 @@ export function getSapoCustomCollections(param: {
   secretKey?: string;
   query?: string;
   delay?: number;
-}): Promise<any> {
+}): Promise<ISapoCustomCollection[]> {
   const { accessToken, apiKey, secretKey, query, delay } = param;
   const config = makeRequestConfig({
     path: '/custom_collections.json',
@@ -89,7 +89,7 @@ export function countSapoCustomCollections(param: {
   apiKey?: string;
   secretKey?: string;
   delay?: number;
-}): Promise<any> {
+}): Promise<number> {
   const { accessToken, apiKey, secretKey, delay } = param;
   const config = makeRequestConfig({
     path: '/custom_collections/count.json',
@@ -97,8 +97,37 @@ export function countSapoCustomCollections(param: {
     accessToken,
     apiKey,
     secretKey,
+    rootField: 'count',
     delay
   });
 
   return sendRequest(config);
+}
+
+export interface ISapoCustomCollection {
+  id: number;
+  name: string;
+  alias: string;
+  description: string;
+  published_on: string;
+  meta_title: string;
+  meta_description: string;
+  created_on: string;
+  modified_on: string;
+  template_layout: string;
+  sort_order: string;
+  image: {
+    id: number;
+    src: string;
+    alt: string | null;
+    extension: string;
+    name: string;
+    content_type: string;
+    created_on: string;
+    modified_on: string;
+    size: number;
+    width: number;
+    height: number;
+  } | null;
+  products_count: number;
 }
