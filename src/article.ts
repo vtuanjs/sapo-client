@@ -5,9 +5,9 @@ export function getSapoArticles(param: {
   accessToken?: string;
   apiKey?: string;
   secretKey?: string;
-  delay: number;
+  delay?: number;
   blogId: string;
-  query: string;
+  query?: string;
 }): Promise<ISapoArticle[]> {
   const { accessToken, apiKey, secretKey, delay, blogId, query } = param;
   const config = makeRequestConfig({
@@ -29,7 +29,7 @@ export function postSapoArticle(param: {
   apiKey?: string;
   secretKey?: string;
   article: PartialDeep<ISapoArticle>;
-  delay: number;
+  delay?: number;
   blogId: string;
 }): Promise<ISapoArticle> {
   const { accessToken, apiKey, secretKey, article, delay, blogId } = param;
@@ -53,7 +53,7 @@ export function updateSapoArticle(param: {
   secretKey?: string;
   id: string;
   article: PartialDeep<ISapoArticle>;
-  delay: number;
+  delay?: number;
   blogId: string;
 }): Promise<ISapoArticle> {
   const { accessToken, apiKey, secretKey, id, article, delay, blogId } = param;

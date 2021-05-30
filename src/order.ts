@@ -7,7 +7,7 @@ export function updateSapoOrder(param: {
   secretKey?: string;
   id: string;
   order: PartialDeep<ISapoOrder>;
-  delay: number;
+  delay?: number;
 }): Promise<ISapoOrder> {
   const { accessToken, apiKey, secretKey, id, order, delay } = param;
   const config = makeRequestConfig({

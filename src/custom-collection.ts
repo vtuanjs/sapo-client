@@ -66,7 +66,7 @@ export function getSapoCustomCollections(param: {
   accessToken?: string;
   apiKey?: string;
   secretKey?: string;
-  query: string;
+  query?: string;
   delay?: number;
 }): Promise<any> {
   const { accessToken, apiKey, secretKey, query, delay } = param;

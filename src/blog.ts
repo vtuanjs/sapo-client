@@ -5,8 +5,8 @@ export function getSapoBlogs(param: {
   accessToken?: string;
   apiKey?: string;
   secretKey?: string;
-  delay: number;
-  query: string;
+  delay?: number;
+  query?: string;
 }): Promise<ISapoBlog[]> {
   const { accessToken, apiKey, secretKey, delay, query } = param;
   const config = makeRequestConfig({
@@ -28,7 +28,7 @@ export function postSapoBlog(param: {
   apiKey?: string;
   secretKey?: string;
   blog: PartialDeep<ISapoBlog>;
-  delay: number;
+  delay?: number;
 }): Promise<ISapoBlog> {
   const { accessToken, apiKey, secretKey, blog, delay } = param;
   const config = makeRequestConfig({
@@ -51,7 +51,7 @@ export function updateSapoBlog(param: {
   secretKey?: string;
   id: string;
   blog: PartialDeep<ISapoBlog>;
-  delay: number;
+  delay?: number;
 }): Promise<ISapoBlog> {
   const { accessToken, apiKey, secretKey, id, blog, delay } = param;
   const config = makeRequestConfig({

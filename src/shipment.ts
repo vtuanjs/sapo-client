@@ -4,8 +4,8 @@ export function getSapoShipments(param: {
   accessToken?: string;
   apiKey?: string;
   secretKey?: string;
-  delay: number;
-  query: string;
+  delay?: number;
+  query?: string;
 }): Promise<ISapoShipment[]> {
   const { accessToken, apiKey, secretKey, delay, query } = param;
   const config = makeRequestConfig({

@@ -29,7 +29,7 @@ export function postSapoProduct(param: {
   apiKey?: string;
   secretKey?: string;
   product: PartialDeep<SapoProductProp>;
-  delay: number;
+  delay?: number;
 }): Promise<ISapoProduct> {
   const { accessToken, apiKey, secretKey, product, delay } = param;
   const config = makeRequestConfig({
@@ -52,7 +52,7 @@ export function updateSapoProduct(param: {
   secretKey?: string;
   id: string;
   product: PartialDeep<SapoProductProp>;
-  delay: number;
+  delay?: number;
 }): Promise<ISapoProduct> {
   const { accessToken, apiKey, secretKey, id, product, delay } = param;
   const config = makeRequestConfig({
