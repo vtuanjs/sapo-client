@@ -1,34 +1,11 @@
 import { PartialDeep } from './type';
 import { makeRequestConfig, sendRequest } from './common';
 
-export type SapoProductProp = {
-  name: string;
-  alias: string;
-  vendor: string;
-  product_type: string;
-  tags: string;
-  summary: string;
-  meta_title: string;
-  meta_description: string;
-  content: string;
-  featured_image: string;
-  images: {
-    src?: string;
-    base64?: string;
-  }[];
-  options: ISapoProductOption[];
-  variants: IVariant[];
-  available: boolean;
-  url: string;
-  published: boolean;
-  published_on: string;
-};
-
 export function postSapoProduct(param: {
   accessToken?: string;
   apiKey?: string;
   secretKey?: string;
-  product: PartialDeep<SapoProductProp>;
+  product: PartialDeep<ISapoProduct>;
   delay?: number;
 }): Promise<ISapoProduct> {
   const { accessToken, apiKey, secretKey, product, delay } = param;
@@ -51,7 +28,7 @@ export function updateSapoProduct(param: {
   apiKey?: string;
   secretKey?: string;
   id: string;
-  product: PartialDeep<SapoProductProp>;
+  product: PartialDeep<ISapoProduct>;
   delay?: number;
 }): Promise<ISapoProduct> {
   const { accessToken, apiKey, secretKey, id, product, delay } = param;
@@ -69,66 +46,71 @@ export function updateSapoProduct(param: {
   return sendRequest(config);
 }
 
-export interface IVariant {
-  id?: number;
-  title: string;
-  barcode: string;
-  sku: string;
-  price: number;
-  compare_at_price: number;
-  options: string[];
-  option1: string;
-  option2: string;
-  option3: string;
-  inventory_management: string;
-  inventory_policy: string;
-  inventory_quantity: number;
-  weight: number;
-  weight_unit: string;
-  featured_image: {
-    id?: number;
-    product_id: number;
-    position: string;
-    src: string;
-    variant_ids: number[];
-  };
-  available: boolean;
-}
-
-export interface ISapoProductOption {
-  name: string;
-  position: number;
-}
-
-export interface ISapoProductImage {
-  id: number;
-  product_id: number;
-  src: string;
-  variant_ids: [string];
-}
-
 export interface ISapoProduct {
   id: number;
   name: string;
   alias: string;
   vendor: string;
   product_type: string;
-  price: number;
-  price_max: number;
-  price_min: number;
-  price_varies: boolean;
-  compare_at_price_max: number;
-  compare_at_price_min: number;
-  compare_at_price_varies: boolean;
-  tags: string[];
-  summary: string;
   meta_title: string;
   meta_description: string;
+  summary: string;
+  published_on: string;
+  template_layout: string;
+  created_on: string;
+  modified_on: string;
   content: string;
-  featured_image: string;
-  images: string[];
-  options: ISapoProductOption[];
-  variants: IVariant[];
-  available: boolean;
-  url: string;
+  tags: string;
+  images: ISapoProductImage[];
+  image: ISapoProductImage;
+  variants: ISapoProductVariant[];
+  options: {
+    id: number;
+    name: string;
+    position: number;
+    created_on: string;
+    modified_on: string;
+    values: string[];
+  }[];
+}
+
+export interface ISapoProductImage {
+  id: number;
+  product_id: number;
+  position: number;
+  variant_ids: string[];
+  created_on: string;
+  modified_on: string;
+  src: string;
+  alt: string;
+  filename: string;
+  size: number;
+  width: number;
+  height: number;
+  base64?: string;
+}
+
+export interface ISapoProductVariant {
+  id: number;
+  barcode: string;
+  sku: string | null;
+  price: number;
+  compare_at_price: number;
+  option1: string;
+  option2: string;
+  option3: string;
+  taxable: boolean;
+  inventory_management: string;
+  inventory_policy: string;
+  inventory_quantity: number;
+  requires_shipping: boolean;
+  weight: number;
+  weight_unit: 'kg';
+  image_id: number;
+  position: number;
+  created_on: string;
+  modified_on: string;
+  title: string;
+  grams: number;
+  product_id: number;
 }
