@@ -1,6 +1,6 @@
 {
   "name": "sapo-client",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "description": "Sapo client",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

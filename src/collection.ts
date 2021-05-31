@@ -1,3 +1,27 @@
+import { makeRequestConfig, sendRequest } from './common';
+
+export function getSapoCollections(param: {
+  accessToken?: string;
+  apiKey?: string;
+  secretKey?: string;
+  query?: string;
+  delay?: number;
+}): Promise<ISapoCollection[]> {
+  const { accessToken, apiKey, secretKey, query, delay } = param;
+  const config = makeRequestConfig({
+    path: '/collections.json',
+    method: 'GET',
+    accessToken,
+    apiKey,
+    secretKey,
+    rootField: 'collections',
+    delay,
+    query
+  });
+
+  return sendRequest(config);
+}
+
 export interface ISapoCollection {
   id: number;
   name: string;

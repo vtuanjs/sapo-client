@@ -10,3 +10,5 @@ export * from './product';
 export * from './shipment';
 export * from './store';
 export * from './webhook';
+export * from './front_store/collection';
+export * from './front_store/product';

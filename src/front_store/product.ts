@@ -64,27 +64,7 @@ export interface ISapoPublicProduct {
   url: string;
 }
 
-export function getProductsByCollectionHandle({
-  domain,
-  page,
-  collectionHandle
-}: {
-  domain: string;
-  page: number;
-  collectionHandle: string;
-}): Promise<ISapoPublicProduct[]> {
-  const config = makeRequestConfig({
-    url: `${domain}/collections/${collectionHandle}/products.json?page=${page}`,
-    accessToken: '',
-    method: 'GET',
-    rootField: 'products',
-    delay: 0
-  });
-
-  return sendRequest(config);
-}
-
-export function getProductByFrontStoreAPI({
+export function getSapoPublicProduct({
   url,
   domain,
   handle
@@ -112,15 +92,21 @@ export function getProductByFrontStoreAPI({
   return sendRequest(config);
 }
 
-export function getProductsByFrontStoreAPI({
+export function getSapoPublicProducts({
   domain,
-  page
+  page,
+  collectionHandle
 }: {
   domain: string;
   page: number;
+  collectionHandle?: string;
 }): Promise<ISapoPublicProduct[]> {
+  const url = collectionHandle
+    ? `${domain}/collections/${collectionHandle}/products.json?page=${page}`
+    : `${domain}/collections/all/products.json?page=${page}`;
+
   const config = makeRequestConfig({
-    url: `${domain}/collections/all/products.json?page=${page}`,
+    url,
     accessToken: '',
     method: 'GET',
     rootField: 'products',
