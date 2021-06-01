@@ -1,7 +1,7 @@
 import { ISapoCustomCollection } from '../custom-collection';
 import { makeRequestConfig, sendRequest } from '../common';
 
-export function getCollectionByFrontStoreAPI({
+export function getSapoPublicCollection({
   url,
   domain,
   handle
@@ -29,7 +29,7 @@ export function getCollectionByFrontStoreAPI({
   return sendRequest(config);
 }
 
-export function getCollectionsByFrontStoreAPI({
+export function getSapoPublicCollections({
   domain,
   page
 }: {

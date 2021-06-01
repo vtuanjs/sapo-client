@@ -1,6 +1,49 @@
 import { PartialDeep } from './type';
 import { makeRequestConfig, sendRequest } from './common';
 
+export function getSapoProducts(param: {
+  accessToken?: string;
+  apiKey?: string;
+  secretKey?: string;
+  query?: string;
+  delay?: number;
+}): Promise<ISapoProduct[]> {
+  const { accessToken, apiKey, secretKey, query, delay } = param;
+  const config = makeRequestConfig({
+    path: `/products.json`,
+    method: 'POST',
+    accessToken,
+    rootField: 'product',
+    delay,
+    apiKey,
+    secretKey,
+    query
+  });
+
+  return sendRequest(config);
+}
+
+export function getSapoProduct(param: {
+  accessToken?: string;
+  apiKey?: string;
+  secretKey?: string;
+  id: string;
+  delay?: number;
+}): Promise<ISapoProduct> {
+  const { accessToken, apiKey, secretKey, id, delay } = param;
+  const config = makeRequestConfig({
+    path: `/products/${id}.json`,
+    method: 'POST',
+    accessToken,
+    rootField: 'product',
+    delay,
+    apiKey,
+    secretKey
+  });
+
+  return sendRequest(config);
+}
+
 export function postSapoProduct(param: {
   accessToken?: string;
   apiKey?: string;
