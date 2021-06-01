@@ -11,9 +11,9 @@ export function getSapoProducts(param: {
   const { accessToken, apiKey, secretKey, query, delay } = param;
   const config = makeRequestConfig({
     path: `/products.json`,
-    method: 'POST',
+    method: 'GET',
     accessToken,
-    rootField: 'product',
+    rootField: 'products',
     delay,
     apiKey,
     secretKey,
@@ -33,7 +33,7 @@ export function getSapoProduct(param: {
   const { accessToken, apiKey, secretKey, id, delay } = param;
   const config = makeRequestConfig({
     path: `/products/${id}.json`,
-    method: 'POST',
+    method: 'GET',
     accessToken,
     rootField: 'product',
     delay,

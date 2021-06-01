@@ -54,6 +54,8 @@ export function makeRequestConfig(param: {
     }
   }
 
+  if (!url.startsWith('http')) url = 'https://' + url;
+
   if (typeof query === 'string') {
     url += `?${query}`;
   }
